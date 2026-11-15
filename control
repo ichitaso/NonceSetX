@@ -1,0 +1,16 @@
+Package: com.ichitaso.noncesetx
+Name: NonceSetX
+Version: 1.0.0
+Architecture: iphoneos-arm64
+Description: Check the APNonce generator / APNonce, save SHSH blobs and set the generator on Dopamine (iOS 15-18, 26). Powered by x8A4.
+Author: ichitaso
+Maintainer: ichitaso
+Section: Utilities
+Pre-Depends: firmware (>= 15.0)
+Depends: libkrw0 (>= 1.1.1), libkrw0-plugin
+Depiction: https://cydia.ichitaso.com/depiction/noncesetx.html
+SileoDepiction: https://cydia.ichitaso.com/depiction/noncesetx.json
+Homepage: https://ichitaso.com
+Icon: https://cydia.ichitaso.com/icons/NonceSetX.png
+dev: ichitaso
+Tag: purpose::uikit, compatible_min::ios15.0, compatible_max::ios26
