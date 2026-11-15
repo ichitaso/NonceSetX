@@ -17,6 +17,9 @@ Check the APNonce generator and APNonce on Dopamine, save SHSH blobs for them, a
 ## Features
 - Show the current generator, APNonce, Cryptex1 seed and Cryptex1 nonce (iOS 16+). The APNonce matches what iBoot reports in recovery mode (`irecovery -q`). When no generator is stored, the one iBoot booted with (`IODeviceTree:/chosen` `boot-nonce`) is shown
 - Copy a ready-to-run `tsschecker` command to save blobs for the current generator / APNonce
+  - iOS 16+: use tsschecker build 438 or 440. Build 444 skips the Cryptex1 components in the TSS request and fails with "IS NOT being signed"
+  - Cellular models: the command reads the BbSNUM with `ideviceinfo`, so run it on a Mac with libimobiledevice (`brew install libimobiledevice`) and the device connected over USB and trusted. The BbSNUM never changes, so it can be passed with `-c` afterwards; `-b` skips the baseband ticket
+  - No working futurerestore is available right now; keep the blobs for later
 - Load an `.shsh2` and check whether its generator matches the device
 - ECID (hidden by default), model and board config
 - Localized in 17 languages (the same set as Horythia). License texts of bundled software are in the app (Credits > Licenses, `Resources/Acknowledgements.txt`)
