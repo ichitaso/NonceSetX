@@ -1,6 +1,6 @@
 Package: com.ichitaso.noncesetx
 Name: NonceSetX
-Version: 1.0.1
+Version: 1.0.2
 Architecture: iphoneos-arm64
 Description: Check the APNonce generator / APNonce, save SHSH blobs and set the generator on Dopamine (iOS 15-18, 26). Powered by x8A4.
 Author: ichitaso

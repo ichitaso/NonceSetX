@@ -37,7 +37,7 @@
 "COPY" = "コピー";
 "COPIED" = "コピーしました";
 "SAVE_TITLE" = "SHSH を保存する";
-"SAVE_BODY" = "A12 以降では、今の端末のジェネレーターと APNonce の組み合わせで SHSH を保存します。tsschecker のコマンドをコピーして、Mac で実行してください。ジェネレーターも SHSH と一緒に控えておきます。";
+"SAVE_BODY" = "A12 以降では、今の端末のジェネレーターと APNonce の組み合わせで SHSH を保存します。tsschecker のコマンドをコピーして、Mac で実行してください。ジェネレーターも SHSH と一緒に控えておきます。コマンドは 1Conan 版の tsschecker 用です。tihmstar 氏の本家版はオプションが異なります。";
 "COMPARE_TITLE" = "保存した SHSH と比べる";
 "COMPARE_BODY" = ".shsh2 を読み込むと、そのジェネレーターが今の端末と一致しているか表示します。";
 "SET_TITLE" = "ジェネレーターを設定する";
@@ -48,14 +48,15 @@
 "ALREADY_SET_TITLE" = "このジェネレーターはすでに設定されています";
 "SET_FAILED_BODY" = "何も変更していません。\n%@";
 "VERIFY_TITLE" = "リカバリーモードで確認する";
-"VERIFY_BODY" = "APNonce は起動時に iBoot が作るので、そこで確認します。端末をリカバリーモードにして（Userspace reboot では確認になりません）、Mac で irecovery -q を実行します。NONC が上の APNonce と SHSH の APNonce に一致していれば、ジェネレーターは正しく設定され、blob と一致しています。現在動作する futurerestore はないため、使えるツールが出るまで blob を保管しておいてください。通常起動に戻すには irecovery -n を実行します。";
+"VERIFY_BODY" = "APNonce は起動時に iBoot が作るので、そこで確認します。端末をリカバリーモードにして（Userspace reboot では確認になりません）、Mac で irecovery -q を実行します。NONC が上の APNonce と SHSH の APNonce に一致していれば、ジェネレーターは正しく設定され、blob と一致しています。通常起動に戻すには irecovery -n を実行します。";
 "BASEBAND_TITLE" = "ベースバンド（セルラーモデル）";
 "BASEBAND_FIRMWARE" = "ベースバンドのファームウェア";
 "BASEBAND_BODY" = "将来 blob で復元する際には、ベースバンドの値も必要になります。ChipID・CertId・シリアル番号（BbSNUM）は端末の中からは取得できないため、libimobiledevice を入れた Mac（brew install libimobiledevice）に USB で接続し、「信頼」したうえで確認してください。";
 "COPY_BASEBAND_COMMAND" = "Mac 用のコマンドをコピー";
 "CRYPTEX_SEED" = "Cryptex1 シード";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 以降：コマンドに Cryptex1 のシードと Entangled Nonce（-x・-t）を含めています。tsschecker は build 438 または 440（Cryptex1 対応版）を使ってください。build 444 は Cryptex1 の blob を保存できません（IS NOT being signed になります）。-E は消去インストール用のチケットだけを要求します。";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 以降：コマンドに Cryptex1 のシードと Entangled Nonce（-x・-t）を含めています。tsschecker は build 438 または 440（Cryptex1 対応版）を使ってください。build 444 / 449 は Cryptex1 の blob を保存できません（IS NOT being signed になります）。-E は消去インストール用のチケットだけを要求します。";
 "SAVE_BASEBAND_NOTE" = "セルラーモデル：Mac に libimobiledevice を入れ（brew install libimobiledevice）、この端末を USB で接続して「信頼」したまま、コマンドをターミナルに貼り付けて実行してください。ideviceinfo で BbSNUM を読み取り、16 進数に変換して渡します。BbSNUM は変わらないので、一度控えておけば次からは接続せずに -c で指定できます。ベースバンドのチケットなしで保存する場合は -b にします。";
+"SAVE_LIMITS_NOTE" = "blob を保存し、ジェネレーターが一致していても、ダウングレードできるとは限りません。復元には、目的の iOS と互換性のある SEP とベースバンドも必要です。現在動作する futurerestore はないため、使えるツールが出るまで blob を保管しておいてください。";
 "COPY_ALL_VALUES" = "値をまとめてコピー";
 "STATUS_LIMITED" = "この iOS では一部の機能のみ使えます（デバイスツリーからのジェネレーター表示と SHSH 保存の案内）。";
 "APNONCE_RECOVERY_NOTE" = "この iOS では端末内で APNonce を取得できません。端末をリカバリーモードにして Mac で irecovery -q を実行し、NONC の値を tsschecker コマンドの --apnonce <NONC> に指定してください。";

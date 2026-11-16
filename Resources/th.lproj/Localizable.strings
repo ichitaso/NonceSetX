@@ -7,8 +7,8 @@
 "GENERATOR" = "Generator";
 "APNONCE" = "APNonce";
 "CRYPTEX_NONCE" = "Cryptex1 Nonce (Entangled Nonce)";
-"MATCH_OK" = "✓ ตรงกับ SHSH blob ของคุณ";
-"MATCH_NG" = "✗ ไม่ตรงกับ SHSH blob ของคุณ";
+"MATCH_OK" = "✓ generator ตรงกับ SHSH blob ของคุณ";
+"MATCH_NG" = "✗ generator ไม่ตรงกับ SHSH blob ของคุณ";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "กำหนดเอง";
@@ -37,7 +37,7 @@
 "COPY" = "คัดลอก";
 "COPIED" = "คัดลอกแล้ว";
 "SAVE_TITLE" = "บันทึก SHSH blob";
-"SAVE_BODY" = "บน A12 ขึ้นไป คุณจะบันทึก blob สำหรับ generator และ APNonce ที่อุปกรณ์มีอยู่ตอนนี้ คัดลอกคำสั่ง tsschecker แล้วรันบน Mac เก็บ generator ไว้คู่กับ blob";
+"SAVE_BODY" = "บน A12 ขึ้นไป คุณจะบันทึก blob สำหรับ generator และ APNonce ที่อุปกรณ์มีอยู่ตอนนี้ คัดลอกคำสั่ง tsschecker แล้วรันบน Mac เก็บ generator ไว้คู่กับ blob คำสั่งนี้สำหรับ tsschecker ของ 1Conan ส่วนต้นฉบับของ tihmstar ใช้ตัวเลือกต่างกัน";
 "COMPARE_TITLE" = "เปรียบเทียบกับ blob ที่บันทึกไว้";
 "COMPARE_BODY" = "โหลดไฟล์ .shsh2 เพื่อดูว่า generator ในไฟล์ตรงกับของอุปกรณ์ตอนนี้หรือไม่";
 "SET_TITLE" = "ตั้งค่า generator";
@@ -48,14 +48,15 @@
 "ALREADY_SET_TITLE" = "ตั้งค่า generator นี้ไว้แล้ว";
 "SET_FAILED_BODY" = "ไม่มีการเปลี่ยนแปลงใดๆ\n%@";
 "VERIFY_TITLE" = "ตรวจสอบในโหมดกู้คืน";
-"VERIFY_BODY" = "APNonce สร้างโดย iBoot ตอนบูต จึงต้องตรวจสอบที่นั่น ให้อุปกรณ์เข้าโหมดกู้คืน (การรีสตาร์ท userspace ไม่พอ) แล้วรัน irecovery -q บน Mac หาก NONC ตรงกับ APNonce ด้านบนและใน SHSH blob ของคุณ แสดงว่าตั้ง generator แล้วและตรงกับ blob ขณะนี้ยังไม่มี futurerestore ที่ใช้งานได้ โปรดเก็บ blob ไว้จนกว่าจะมี รัน irecovery -n เพื่อบูตตามปกติ";
+"VERIFY_BODY" = "APNonce สร้างโดย iBoot ตอนบูต จึงต้องตรวจสอบที่นั่น ให้อุปกรณ์เข้าโหมดกู้คืน (การรีสตาร์ท userspace ไม่พอ) แล้วรัน irecovery -q บน Mac หาก NONC ตรงกับ APNonce ด้านบนและใน SHSH blob ของคุณ แสดงว่าตั้ง generator แล้วและตรงกับ blob รัน irecovery -n เพื่อบูตตามปกติ";
 "BASEBAND_TITLE" = "เบสแบนด์ (รุ่นเซลลูลาร์)";
 "BASEBAND_FIRMWARE" = "เฟิร์มแวร์เบสแบนด์";
 "BASEBAND_BODY" = "การกู้คืนด้วย blob ในอนาคตจะต้องใช้ค่าเบสแบนด์ด้วย ChipID, CertId และหมายเลขซีเรียล (BbSNUM) อ่านบนอุปกรณ์ไม่ได้ โปรดตรวจสอบบน Mac ที่ติดตั้ง libimobiledevice แล้ว (brew install libimobiledevice) โดยเชื่อมต่ออุปกรณ์ผ่าน USB และกดเชื่อถือ";
 "COPY_BASEBAND_COMMAND" = "คัดลอกคำสั่งสำหรับ Mac";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 ขึ้นไป: คำสั่งมี seed ของ Cryptex1 และ Entangled Nonce (-x, -t) จึงต้องใช้ tsschecker build 438 หรือ 440 (รองรับ Cryptex1) build 444 บันทึก blob ของ Cryptex1 ไม่ได้ (แสดง IS NOT being signed) -E ขอเฉพาะตั๋วสำหรับการติดตั้งแบบลบข้อมูล";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 ขึ้นไป: คำสั่งมี seed ของ Cryptex1 และ Entangled Nonce (-x, -t) จึงต้องใช้ tsschecker build 438 หรือ 440 (รองรับ Cryptex1) build 444 / 449 บันทึก blob ของ Cryptex1 ไม่ได้ (แสดง IS NOT being signed) -E ขอเฉพาะตั๋วสำหรับการติดตั้งแบบลบข้อมูล";
 "SAVE_BASEBAND_NOTE" = "รุ่นเซลลูลาร์: ติดตั้ง libimobiledevice บน Mac (brew install libimobiledevice) แล้ววางคำสั่งใน Terminal ขณะเชื่อมต่ออุปกรณ์นี้ผ่าน USB และกดเชื่อถือ คำสั่งจะอ่าน BbSNUM ด้วย ideviceinfo และแปลงเป็นฐานสิบหก BbSNUM ไม่เปลี่ยน จดไว้ครั้งเดียวแล้วครั้งต่อไประบุด้วย -c ได้โดยไม่ต้องเชื่อมต่อ ใช้ -b แทนหากต้องการบันทึกโดยไม่มีตั๋วเบสแบนด์";
+"SAVE_LIMITS_NOTE" = "การบันทึก blob และ generator ที่ตรงกันไม่ได้รับประกันว่าจะดาวน์เกรดได้ การกู้คืนยังต้องใช้ SEP และ baseband ที่เข้ากันได้กับ iOS เป้าหมาย ขณะนี้ยังไม่มี futurerestore ที่ใช้งานได้ โปรดเก็บ blob ไว้จนกว่าจะมี";
 "COPY_ALL_VALUES" = "คัดลอกค่าทั้งหมด";
 "STATUS_LIMITED" = "จำกัดบน iOS นี้: แสดงได้เฉพาะ generator (จาก device tree) และคำแนะนำการบันทึก SHSH";
 "APNONCE_RECOVERY_NOTE" = "บน iOS นี้ไม่สามารถอ่าน APNonce บนอุปกรณ์ได้ ให้อุปกรณ์เข้าโหมดกู้คืน รัน irecovery -q บน Mac แล้วใช้ค่า NONC สำหรับ --apnonce <NONC> ในคำสั่ง tsschecker";

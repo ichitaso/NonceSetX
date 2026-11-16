@@ -7,8 +7,8 @@
 "GENERATOR" = "Generator";
 "APNONCE" = "APNonce";
 "CRYPTEX_NONCE" = "Cryptex1 Nonce (Entangled Nonce)";
-"MATCH_OK" = "✓ Corrisponde al tuo blob SHSH";
-"MATCH_NG" = "✗ Non corrisponde al tuo blob SHSH";
+"MATCH_OK" = "✓ Il generator corrisponde al tuo blob SHSH";
+"MATCH_NG" = "✗ Il generator non corrisponde al tuo blob SHSH";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "Personalizzato";
@@ -37,7 +37,7 @@
 "COPY" = "Copia";
 "COPIED" = "Copiato";
 "SAVE_TITLE" = "Salva i blob SHSH";
-"SAVE_BODY" = "Su A12 e successivi si salvano i blob per il generator e l’APNonce che il dispositivo ha ora. Copia il comando tsschecker ed eseguilo sul Mac. Conserva il generator insieme al blob.";
+"SAVE_BODY" = "Su A12 e successivi si salvano i blob per il generator e l’APNonce che il dispositivo ha ora. Copia il comando tsschecker ed eseguilo sul Mac. Conserva il generator insieme al blob. Il comando è per il tsschecker di 1Conan; l’originale di tihmstar usa opzioni diverse.";
 "COMPARE_TITLE" = "Confronta con un blob salvato";
 "COMPARE_BODY" = "Carica un file .shsh2 per vedere se il suo generator corrisponde a quello attuale del dispositivo.";
 "SET_TITLE" = "Imposta il generator";
@@ -48,14 +48,15 @@
 "ALREADY_SET_TITLE" = "Questo generator è già impostato";
 "SET_FAILED_BODY" = "Non è stato modificato nulla.\n%@";
 "VERIFY_TITLE" = "Controlla in modalità di recupero";
-"VERIFY_BODY" = "L’APNonce viene creato da iBoot all’avvio, quindi controllalo lì. Metti il dispositivo in modalità di recupero (un riavvio dello userspace non basta) ed esegui irecovery -q sul Mac. Se NONC corrisponde all’APNonce mostrato sopra e a quello del tuo blob SHSH, il generatore è impostato e corrisponde al blob. Al momento non esiste un futurerestore funzionante, quindi conserva il blob finché non ci sarà. Esegui irecovery -n per avviare normalmente.";
+"VERIFY_BODY" = "L’APNonce viene creato da iBoot all’avvio, quindi controllalo lì. Metti il dispositivo in modalità di recupero (un riavvio dello userspace non basta) ed esegui irecovery -q sul Mac. Se NONC corrisponde all’APNonce mostrato sopra e a quello del tuo blob SHSH, il generatore è impostato e corrisponde al blob. Esegui irecovery -n per avviare normalmente.";
 "BASEBAND_TITLE" = "Baseband (modelli cellulari)";
 "BASEBAND_FIRMWARE" = "Firmware baseband";
 "BASEBAND_BODY" = "Un ripristino futuro con il blob richiederà anche i valori della baseband. ChipID, CertId e numero di serie (BbSNUM) non si possono leggere sul dispositivo: controllali su un Mac con libimobiledevice installato (brew install libimobiledevice) e il dispositivo collegato via USB e autorizzato.";
 "COPY_BASEBAND_COMMAND" = "Copia comando per il Mac";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 e successivi: il comando include il seed Cryptex1 e l’Entangled Nonce (-x, -t), quindi usa tsschecker build 438 o 440 (supporto Cryptex1). La build 444 non riesce a salvare i blob Cryptex1 (segnala IS NOT being signed). -E richiede solo i ticket per un’installazione con inizializzazione.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 e successivi: il comando include il seed Cryptex1 e l’Entangled Nonce (-x, -t), quindi usa tsschecker build 438 o 440 (supporto Cryptex1). La build 444 / 449 non riesce a salvare i blob Cryptex1 (segnala IS NOT being signed). -E richiede solo i ticket per un’installazione con inizializzazione.";
 "SAVE_BASEBAND_NOTE" = "Modello cellulare: installa libimobiledevice sul Mac (brew install libimobiledevice), poi incolla il comando nel Terminale con questo dispositivo collegato via USB e autorizzato. Legge il BbSNUM con ideviceinfo e lo converte in esadecimale. Il BbSNUM non cambia mai: una volta annotato puoi passarlo con -c senza collegare. Usa invece -b per salvare senza il ticket della baseband.";
+"SAVE_LIMITS_NOTE" = "Blob salvati e un generator corrispondente non garantiscono che il downgrade funzioni: il ripristino richiede anche SEP e baseband compatibili con l’iOS di destinazione. Al momento non esiste un futurerestore funzionante, quindi conserva il blob finché non ci sarà.";
 "COPY_ALL_VALUES" = "Copia tutti i valori";
 "STATUS_LIMITED" = "Limitato su questo iOS: solo il generator (dal device tree) e la guida al salvataggio SHSH.";
 "APNONCE_RECOVERY_NOTE" = "Su questo iOS l’APNonce non può essere letto sul dispositivo. Metti il dispositivo in modalità di recupero, esegui irecovery -q sul Mac e usa il valore NONC per --apnonce <NONC> nel comando tsschecker.";

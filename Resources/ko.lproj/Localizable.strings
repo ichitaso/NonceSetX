@@ -7,8 +7,8 @@
 "GENERATOR" = "Generator";
 "APNONCE" = "APNonce";
 "CRYPTEX_NONCE" = "Cryptex1 Nonce (Entangled Nonce)";
-"MATCH_OK" = "✓ SHSH blob과 일치합니다";
-"MATCH_NG" = "✗ SHSH blob과 일치하지 않습니다";
+"MATCH_OK" = "✓ generator가 SHSH blob과 일치합니다";
+"MATCH_NG" = "✗ generator가 SHSH blob과 일치하지 않습니다";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "사용자 지정";
@@ -37,7 +37,7 @@
 "COPY" = "복사";
 "COPIED" = "복사됨";
 "SAVE_TITLE" = "SHSH blob 저장";
-"SAVE_BODY" = "A12 이상에서는 기기의 현재 generator와 APNonce에 대한 blob을 저장합니다. tsschecker 명령을 복사해 Mac에서 실행하세요. generator는 blob과 함께 보관하세요.";
+"SAVE_BODY" = "A12 이상에서는 기기의 현재 generator와 APNonce에 대한 blob을 저장합니다. tsschecker 명령을 복사해 Mac에서 실행하세요. generator는 blob과 함께 보관하세요. 이 명령은 1Conan의 tsschecker용입니다. tihmstar의 원본은 옵션이 다릅니다.";
 "COMPARE_TITLE" = "저장된 blob과 비교";
 "COMPARE_BODY" = ".shsh2 파일을 불러와 그 generator가 현재 기기의 것과 일치하는지 확인합니다.";
 "SET_TITLE" = "generator 설정";
@@ -48,14 +48,15 @@
 "ALREADY_SET_TITLE" = "이미 이 generator로 설정되어 있습니다";
 "SET_FAILED_BODY" = "아무것도 변경되지 않았습니다.\n%@";
 "VERIFY_TITLE" = "복구 모드에서 확인";
-"VERIFY_BODY" = "APNonce는 부팅 시 iBoot가 만들므로 그곳에서 확인하세요. 기기를 복구 모드로 전환하고(사용자 공간 재시동으로는 부족합니다) Mac에서 irecovery -q를 실행하세요. NONC가 위에 표시된 APNonce 및 SHSH blob의 값과 일치하면 제너레이터가 올바르게 설정되어 blob과 일치하는 것입니다. 현재 작동하는 futurerestore가 없으므로 사용할 수 있는 도구가 나올 때까지 blob을 보관하세요. irecovery -n을 실행하면 정상적으로 부팅합니다.";
+"VERIFY_BODY" = "APNonce는 부팅 시 iBoot가 만들므로 그곳에서 확인하세요. 기기를 복구 모드로 전환하고(사용자 공간 재시동으로는 부족합니다) Mac에서 irecovery -q를 실행하세요. NONC가 위에 표시된 APNonce 및 SHSH blob의 값과 일치하면 제너레이터가 올바르게 설정되어 blob과 일치하는 것입니다. irecovery -n을 실행하면 정상적으로 부팅합니다.";
 "BASEBAND_TITLE" = "베이스밴드 (셀룰러 모델)";
 "BASEBAND_FIRMWARE" = "베이스밴드 펌웨어";
 "BASEBAND_BODY" = "나중에 blob으로 복원할 때는 베이스밴드 값도 필요합니다. ChipID, CertId, 일련번호(BbSNUM)는 기기에서 읽을 수 없으므로 libimobiledevice가 설치된 Mac(brew install libimobiledevice)에 기기를 USB로 연결하고 신뢰한 뒤 확인하세요.";
 "COPY_BASEBAND_COMMAND" = "Mac용 명령 복사";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 이상: 명령에 Cryptex1 seed와 Entangled Nonce(-x, -t)가 포함되므로 tsschecker build 438 또는 440(Cryptex1 지원)을 사용하세요. build 444는 Cryptex1 blob을 저장할 수 없습니다(IS NOT being signed로 표시됨). -E는 지우기 설치용 티켓만 요청합니다.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 이상: 명령에 Cryptex1 seed와 Entangled Nonce(-x, -t)가 포함되므로 tsschecker build 438 또는 440(Cryptex1 지원)을 사용하세요. build 444 / 449는 Cryptex1 blob을 저장할 수 없습니다(IS NOT being signed로 표시됨). -E는 지우기 설치용 티켓만 요청합니다.";
 "SAVE_BASEBAND_NOTE" = "셀룰러 모델: Mac에 libimobiledevice를 설치하고(brew install libimobiledevice), 이 기기를 USB로 연결해 신뢰한 상태에서 명령을 터미널에 붙여넣으세요. ideviceinfo로 BbSNUM을 읽어 16진수로 변환합니다. BbSNUM은 바뀌지 않으므로 한 번 기록해 두면 다음부터는 연결 없이 -c로 지정할 수 있습니다. 베이스밴드 티켓 없이 저장하려면 대신 -b를 사용하세요.";
+"SAVE_LIMITS_NOTE" = "blob을 저장하고 generator가 일치해도 다운그레이드가 된다는 보장은 없습니다. 복원에는 대상 iOS와 호환되는 SEP와 baseband도 필요합니다. 현재 작동하는 futurerestore가 없으므로 사용할 수 있는 도구가 나올 때까지 blob을 보관하세요.";
 "COPY_ALL_VALUES" = "모든 값 복사";
 "STATUS_LIMITED" = "이 iOS에서는 일부 기능만 사용할 수 있습니다: generator(디바이스 트리에서) 표시와 SHSH 저장 안내만 가능합니다.";
 "APNONCE_RECOVERY_NOTE" = "이 iOS에서는 기기에서 APNonce를 읽을 수 없습니다. 기기를 복구 모드로 전환하고 Mac에서 irecovery -q를 실행한 뒤, NONC 값을 tsschecker 명령의 --apnonce <NONC>에 사용하세요.";

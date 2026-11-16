@@ -7,8 +7,8 @@
 "GENERATOR" = "Generator";
 "APNONCE" = "APNonce";
 "CRYPTEX_NONCE" = "Cryptex1 Nonce (Entangled Nonce)";
-"MATCH_OK" = "✓ SHSH blob ile eşleşiyor";
-"MATCH_NG" = "✗ SHSH blob ile eşleşmiyor";
+"MATCH_OK" = "✓ Generator SHSH blob ile eşleşiyor";
+"MATCH_NG" = "✗ Generator SHSH blob ile eşleşmiyor";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "Özel";
@@ -37,7 +37,7 @@
 "COPY" = "Kopyala";
 "COPIED" = "Kopyalandı";
 "SAVE_TITLE" = "SHSH blob’larını kaydet";
-"SAVE_BODY" = "A12 ve sonrasında, cihazınızın şu anki generator ve APNonce değerleri için blob kaydedersiniz. tsschecker komutunu kopyalayıp Mac’inizde çalıştırın. Generator’ı blob ile birlikte saklayın.";
+"SAVE_BODY" = "A12 ve sonrasında, cihazınızın şu anki generator ve APNonce değerleri için blob kaydedersiniz. tsschecker komutunu kopyalayıp Mac’inizde çalıştırın. Generator’ı blob ile birlikte saklayın. Komut 1Conan’ın tsschecker’ı içindir; tihmstar’ın orijinali farklı seçenekler kullanır.";
 "COMPARE_TITLE" = "Kayıtlı bir blob ile karşılaştır";
 "COMPARE_BODY" = "Generator’ının cihazınızdaki şu anki ile eşleşip eşleşmediğini görmek için bir .shsh2 dosyası yükleyin.";
 "SET_TITLE" = "Generator’ı ayarla";
@@ -48,14 +48,15 @@
 "ALREADY_SET_TITLE" = "Bu generator zaten ayarlı";
 "SET_FAILED_BODY" = "Hiçbir şey değiştirilmedi.\n%@";
 "VERIFY_TITLE" = "Kurtarma modunda kontrol et";
-"VERIFY_BODY" = "APNonce açılışta iBoot tarafından oluşturulur, bu yüzden orada kontrol edin. Cihazı kurtarma moduna alın (userspace yeniden başlatma yetmez) ve Mac’inizde irecovery -q çalıştırın. NONC yukarıda gösterilen APNonce ve SHSH blob’unuzdaki ile eşleşiyorsa jeneratör ayarlanmış ve blob ile eşleşiyor demektir. Şu anda çalışan bir futurerestore yok, bu yüzden çıkana kadar blob’u saklayın. Normal açılış için irecovery -n çalıştırın.";
+"VERIFY_BODY" = "APNonce açılışta iBoot tarafından oluşturulur, bu yüzden orada kontrol edin. Cihazı kurtarma moduna alın (userspace yeniden başlatma yetmez) ve Mac’inizde irecovery -q çalıştırın. NONC yukarıda gösterilen APNonce ve SHSH blob’unuzdaki ile eşleşiyorsa jeneratör ayarlanmış ve blob ile eşleşiyor demektir. Normal açılış için irecovery -n çalıştırın.";
 "BASEBAND_TITLE" = "Baseband (hücresel modeller)";
 "BASEBAND_FIRMWARE" = "Baseband yazılımı";
 "BASEBAND_BODY" = "İleride blob ile geri yükleme için baseband değerleri de gerekecek. ChipID, CertId ve seri numarası (BbSNUM) cihazda okunamaz; libimobiledevice kurulu bir Mac’te (brew install libimobiledevice), cihaz USB ile bağlı ve güvenilir olarak onaylanmışken bunları kontrol edin.";
 "COPY_BASEBAND_COMMAND" = "Mac için komutu kopyala";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 ve sonrası: komut Cryptex1 seed’ini ve Entangled Nonce’u (-x, -t) içerir, bu yüzden tsschecker build 438 veya 440’ı (Cryptex1 desteği) kullanın. Build 444 Cryptex1 blob’larını kaydedemez (IS NOT being signed gösterir). -E yalnızca silerek kurulum biletlerini ister.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 ve sonrası: komut Cryptex1 seed’ini ve Entangled Nonce’u (-x, -t) içerir, bu yüzden tsschecker build 438 veya 440’ı (Cryptex1 desteği) kullanın. Build 444 / 449 Cryptex1 blob’larını kaydedemez (IS NOT being signed gösterir). -E yalnızca silerek kurulum biletlerini ister.";
 "SAVE_BASEBAND_NOTE" = "Hücresel model: Mac’e libimobiledevice kurun (brew install libimobiledevice), ardından bu cihaz USB ile bağlı ve güvenilir olarak onaylanmışken komutu Terminal’e yapıştırın. BbSNUM’u ideviceinfo ile okur ve onaltılığa çevirir. BbSNUM hiç değişmez; bir kez not ettikten sonra bağlamadan -c ile verebilirsiniz. Baseband bileti olmadan kaydetmek için bunun yerine -b kullanın.";
+"SAVE_LIMITS_NOTE" = "Blob kaydetmek ve generator’ın eşleşmesi düşürmenin çalışacağını kanıtlamaz: geri yükleme, hedef iOS ile uyumlu bir SEP ve baseband da gerektirir. Şu anda çalışan bir futurerestore yok, bu yüzden çıkana kadar blob’u saklayın.";
 "COPY_ALL_VALUES" = "Tüm değerleri kopyala";
 "STATUS_LIMITED" = "Bu iOS’ta sınırlı: yalnızca generator (aygıt ağacından) ve SHSH kaydetme rehberi.";
 "APNONCE_RECOVERY_NOTE" = "Bu iOS’ta APNonce cihazda okunamaz. Cihazı kurtarma moduna alın, Mac’inizde irecovery -q çalıştırın ve NONC değerini tsschecker komutundaki --apnonce <NONC> için kullanın.";

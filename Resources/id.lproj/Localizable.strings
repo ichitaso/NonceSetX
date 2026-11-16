@@ -7,8 +7,8 @@
 "GENERATOR" = "Generator";
 "APNONCE" = "APNonce";
 "CRYPTEX_NONCE" = "Cryptex1 Nonce (Entangled Nonce)";
-"MATCH_OK" = "✓ Cocok dengan SHSH blob Anda";
-"MATCH_NG" = "✗ Tidak cocok dengan SHSH blob Anda";
+"MATCH_OK" = "✓ Generator cocok dengan SHSH blob Anda";
+"MATCH_NG" = "✗ Generator tidak cocok dengan SHSH blob Anda";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "Kustom";
@@ -37,7 +37,7 @@
 "COPY" = "Salin";
 "COPIED" = "Disalin";
 "SAVE_TITLE" = "Simpan SHSH blob";
-"SAVE_BODY" = "Pada A12 dan yang lebih baru, Anda menyimpan blob untuk generator dan APNonce yang dimiliki perangkat saat ini. Salin perintah tsschecker dan jalankan di Mac Anda. Simpan generator bersama blob-nya.";
+"SAVE_BODY" = "Pada A12 dan yang lebih baru, Anda menyimpan blob untuk generator dan APNonce yang dimiliki perangkat saat ini. Salin perintah tsschecker dan jalankan di Mac Anda. Simpan generator bersama blob-nya. Perintah ini untuk tsschecker milik 1Conan; versi asli tihmstar memakai opsi yang berbeda.";
 "COMPARE_TITLE" = "Bandingkan dengan blob tersimpan";
 "COMPARE_BODY" = "Muat file .shsh2 untuk melihat apakah generator-nya cocok dengan yang ada di perangkat Anda saat ini.";
 "SET_TITLE" = "Atur generator";
@@ -48,14 +48,15 @@
 "ALREADY_SET_TITLE" = "Generator ini sudah diatur";
 "SET_FAILED_BODY" = "Tidak ada yang diubah.\n%@";
 "VERIFY_TITLE" = "Periksa di mode pemulihan";
-"VERIFY_BODY" = "APNonce dibuat oleh iBoot saat booting, jadi periksa di sana. Masukkan perangkat ke mode pemulihan (restart userspace tidak cukup) lalu jalankan irecovery -q di Mac Anda. Jika NONC cocok dengan APNonce di atas dan yang ada di SHSH blob Anda, generator sudah diatur dan cocok dengan blob. Saat ini belum ada futurerestore yang berfungsi, jadi simpan blob sampai tersedia. Jalankan irecovery -n untuk booting normal kembali.";
+"VERIFY_BODY" = "APNonce dibuat oleh iBoot saat booting, jadi periksa di sana. Masukkan perangkat ke mode pemulihan (restart userspace tidak cukup) lalu jalankan irecovery -q di Mac Anda. Jika NONC cocok dengan APNonce di atas dan yang ada di SHSH blob Anda, generator sudah diatur dan cocok dengan blob. Jalankan irecovery -n untuk booting normal kembali.";
 "BASEBAND_TITLE" = "Baseband (model seluler)";
 "BASEBAND_FIRMWARE" = "Firmware baseband";
 "BASEBAND_BODY" = "Memulihkan dengan blob nanti juga memerlukan nilai baseband. ChipID, CertId, dan nomor seri (BbSNUM) tidak dapat dibaca di perangkat, jadi periksa di Mac yang sudah terpasang libimobiledevice (brew install libimobiledevice) dengan perangkat tersambung lewat USB dan sudah dipercaya.";
 "COPY_BASEBAND_COMMAND" = "Salin perintah untuk Mac";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 dan yang lebih baru: perintah menyertakan seed Cryptex1 dan Entangled Nonce (-x, -t), jadi gunakan tsschecker build 438 atau 440 (mendukung Cryptex1). Build 444 tidak dapat menyimpan blob Cryptex1 (muncul IS NOT being signed). -E hanya meminta tiket untuk instalasi dengan penghapusan.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 dan yang lebih baru: perintah menyertakan seed Cryptex1 dan Entangled Nonce (-x, -t), jadi gunakan tsschecker build 438 atau 440 (mendukung Cryptex1). Build 444 / 449 tidak dapat menyimpan blob Cryptex1 (muncul IS NOT being signed). -E hanya meminta tiket untuk instalasi dengan penghapusan.";
 "SAVE_BASEBAND_NOTE" = "Model seluler: pasang libimobiledevice di Mac (brew install libimobiledevice), lalu tempel perintah di Terminal saat perangkat ini tersambung lewat USB dan sudah dipercaya. Perintah membaca BbSNUM dengan ideviceinfo dan mengubahnya ke heksadesimal. BbSNUM tidak pernah berubah, jadi setelah dicatat Anda bisa memberikannya dengan -c tanpa menyambung. Gunakan -b sebagai gantinya untuk menyimpan tanpa tiket baseband.";
+"SAVE_LIMITS_NOTE" = "Menyimpan blob dan generator yang cocok tidak menjamin downgrade akan berhasil: pemulihan juga memerlukan SEP dan baseband yang kompatibel dengan iOS tujuan. Saat ini belum ada futurerestore yang berfungsi, jadi simpan blob sampai tersedia.";
 "COPY_ALL_VALUES" = "Salin semua nilai";
 "STATUS_LIMITED" = "Terbatas di iOS ini: hanya generator (dari device tree) dan panduan menyimpan SHSH.";
 "APNONCE_RECOVERY_NOTE" = "Di iOS ini APNonce tidak dapat dibaca di perangkat. Masukkan perangkat ke mode pemulihan, jalankan irecovery -q di Mac Anda, lalu gunakan nilai NONC untuk --apnonce <NONC> di perintah tsschecker.";

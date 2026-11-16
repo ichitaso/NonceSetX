@@ -7,8 +7,8 @@
 "GENERATOR" = "Generator";
 "APNONCE" = "APNonce";
 "CRYPTEX_NONCE" = "Cryptex1 Nonce (Entangled Nonce)";
-"MATCH_OK" = "✓ Совпадает с вашим SHSH blob";
-"MATCH_NG" = "✗ Не совпадает с вашим SHSH blob";
+"MATCH_OK" = "✓ Generator совпадает с вашим SHSH blob";
+"MATCH_NG" = "✗ Generator не совпадает с вашим SHSH blob";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "Свой";
@@ -37,7 +37,7 @@
 "COPY" = "Копировать";
 "COPIED" = "Скопировано";
 "SAVE_TITLE" = "Сохранить SHSH blob";
-"SAVE_BODY" = "На A12 и новее blob сохраняются для generator и APNonce, которые сейчас у устройства. Скопируйте команду tsschecker и выполните её на Mac. Храните generator вместе с blob.";
+"SAVE_BODY" = "На A12 и новее blob сохраняются для generator и APNonce, которые сейчас у устройства. Скопируйте команду tsschecker и выполните её на Mac. Храните generator вместе с blob. Команда рассчитана на tsschecker от 1Conan; оригинал от tihmstar использует другие параметры.";
 "COMPARE_TITLE" = "Сравнить с сохранённым blob";
 "COMPARE_BODY" = "Загрузите файл .shsh2, чтобы проверить, совпадает ли его generator с текущим на устройстве.";
 "SET_TITLE" = "Установить generator";
@@ -48,14 +48,15 @@
 "ALREADY_SET_TITLE" = "Этот generator уже установлен";
 "SET_FAILED_BODY" = "Ничего не изменено.\n%@";
 "VERIFY_TITLE" = "Проверка в режиме восстановления";
-"VERIFY_BODY" = "APNonce создаётся iBoot при загрузке, поэтому проверяйте его там. Переведите устройство в режим восстановления (перезапуска userspace недостаточно) и выполните irecovery -q на Mac. Если NONC совпадает с APNonce выше и с указанным в SHSH blob, генератор установлен и совпадает с blob. Сейчас нет работающего futurerestore, поэтому сохраните blob до его появления. Выполните irecovery -n, чтобы загрузиться как обычно.";
+"VERIFY_BODY" = "APNonce создаётся iBoot при загрузке, поэтому проверяйте его там. Переведите устройство в режим восстановления (перезапуска userspace недостаточно) и выполните irecovery -q на Mac. Если NONC совпадает с APNonce выше и с указанным в SHSH blob, генератор установлен и совпадает с blob. Выполните irecovery -n, чтобы загрузиться как обычно.";
 "BASEBAND_TITLE" = "Модем (сотовые модели)";
 "BASEBAND_FIRMWARE" = "Прошивка модема";
 "BASEBAND_BODY" = "Для будущего восстановления с blob также понадобятся значения модема. ChipID, CertId и серийный номер (BbSNUM) нельзя прочитать на устройстве, проверьте их на Mac с установленным libimobiledevice (brew install libimobiledevice), подключив устройство по USB и подтвердив доверие.";
 "COPY_BASEBAND_COMMAND" = "Скопировать команду для Mac";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 и новее: команда включает seed Cryptex1 и Entangled Nonce (-x, -t), поэтому используйте tsschecker build 438 или 440 (поддержка Cryptex1). Build 444 не может сохранить blob Cryptex1 (выдаёт IS NOT being signed). -E запрашивает только тикеты для установки со стиранием.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 и новее: команда включает seed Cryptex1 и Entangled Nonce (-x, -t), поэтому используйте tsschecker build 438 или 440 (поддержка Cryptex1). Build 444 / 449 не может сохранить blob Cryptex1 (выдаёт IS NOT being signed). -E запрашивает только тикеты для установки со стиранием.";
 "SAVE_BASEBAND_NOTE" = "Сотовая модель: установите libimobiledevice на Mac (brew install libimobiledevice) и вставьте команду в Терминал, подключив это устройство по USB и подтвердив доверие. Она читает BbSNUM через ideviceinfo и переводит его в шестнадцатеричный вид. BbSNUM не меняется: записав его один раз, можно передавать его через -c без подключения. Чтобы сохранить без тикета модема, используйте -b.";
+"SAVE_LIMITS_NOTE" = "Сохранённые blob и совпадающий generator не гарантируют, что даунгрейд сработает: для восстановления также нужны SEP и baseband, совместимые с целевой iOS. Сейчас нет работающего futurerestore, поэтому сохраните blob до его появления.";
 "COPY_ALL_VALUES" = "Скопировать все значения";
 "STATUS_LIMITED" = "Ограничено на этой iOS: только generator (из дерева устройств) и инструкция по сохранению SHSH.";
 "APNONCE_RECOVERY_NOTE" = "На этой iOS APNonce нельзя прочитать на устройстве. Переведите устройство в режим восстановления, выполните irecovery -q на Mac и используйте значение NONC для --apnonce <NONC> в команде tsschecker.";

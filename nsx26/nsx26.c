@@ -1,5 +1,5 @@
-// nsx26: x8A4-compatible CLI for iOS 18.5+ / 26 on Dopamine (x8A4/XPF does not support them).
-// Kernel r/w comes from libjailbreak. Checked on iPhone12,3 (A13) 26.0.1 and iPad7,11 (A10) 18.6.
+// nsx26: x8A4-compatible CLI for iOS 18.5+ / 26 on Dopamine (x8A4/XPF does not support them), and -V / -S on 18.0 - 18.4.
+// Kernel r/w comes from libjailbreak. Checked on iPhone12,3 (A13) 26.0.1 and iPad7,11 (A10) 18.6 / 18.3.2.
 #include <ctype.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -87,7 +87,7 @@ struct chrp {
 	uint64_t dict;
 };
 
-// CHRP handler (xnu-11417 / 12377): nv+0x98, _newData +0x14, _provider +0x20, _varDict +0x48
+// CHRP handler (xnu-11215 / 11417 / 12377): nv+0x98, _newData +0x14, _provider +0x20, _varDict +0x48
 static const char *chrp_find(struct chrp *c) {
 	uint64_t objs[OBJ_CANDIDATES];
 	if (service_objects("IODTNVRAM", objs)) return "IODTNVRAM not found";
@@ -97,6 +97,8 @@ static const char *chrp_find(struct chrp *c) {
 		c->handler = STRIP(kread64(nv + 0x98));
 		if (STRIP(kread64(c->handler + 0x20)) != nv) continue;
 		c->dict = STRIP(kread64(c->handler + 0x48));
+		// xnu-11215: _varDict is a reference to IODTNVRAM's _varDict (nv+0xC0)
+		if (c->dict >= nv && c->dict < nv + 0x200) c->dict = STRIP(kread64(c->dict));
 		uint32_t cnt = kread32(c->dict + 0x14);
 		if (!cnt || cnt > 512) return "unexpected NVRAM dictionary";
 		return NULL;
@@ -287,6 +289,10 @@ static int cmd_set(const char *arg) {
 		int step = generate_nonce(&kr);
 		if (step) {
 			printf("NSX_V3: FAILED (generateNonce %s: 0x%x)\n", step == 1 ? "open" : "call", kr);
+			return -1;
+		}
+		if ((reason = chrp_find(&c))) {
+			printf("NSX_V3: UNSUPPORTED (%s)\n", reason);
 			return -1;
 		}
 	}

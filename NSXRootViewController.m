@@ -249,6 +249,9 @@ typedef NS_ENUM(NSInteger, NSXState) {
     ] mutableCopy];
     if (@available(iOS 16, *)) [saveViews addObject:[self captionLabel:L(@"SAVE_CRYPTEX_NOTE")]];
     if ([MGString(@"HasBaseband") boolValue]) [saveViews addObject:[self captionLabel:L(@"SAVE_BASEBAND_NOTE")]];
+    UILabel *limitsNote = [self captionLabel:L(@"SAVE_LIMITS_NOTE")];
+    limitsNote.textColor = UIColor.systemOrangeColor;
+    [saveViews addObject:limitsNote];
     [_stack addArrangedSubview:[self cardWithViews:saveViews]];
 
     // Step 2: compare with a saved blob
@@ -544,7 +547,7 @@ typedef NS_ENUM(NSInteger, NSXState) {
 
 - (BOOL)isSupportedVersion {
     NSOperatingSystemVersion v = NSProcessInfo.processInfo.operatingSystemVersion;
-    // x8A4: 15.0 - 18.4, nsx26: 18.5+ and 26
+    // x8A4: 15.0 - 18.4 (NVRAM write via nsx26 on 18.x), nsx26: 18.5+ and 26
     return v.majorVersion == 26 || (v.majorVersion >= 15 && v.majorVersion <= 18);
 }
 

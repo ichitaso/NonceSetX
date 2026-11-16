@@ -17,15 +17,17 @@ extern int posix_spawnattr_set_persona_gid_np(const posix_spawnattr_t *__restric
     return NSBundle.mainBundle.bundlePath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent;
 }
 
++ (NSString *)nsx26Path {
+    NSString *nsx26 = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"nsx26"];
+    NSString *libjb = [self.jbroot stringByAppendingPathComponent:@"basebin/libjailbreak.dylib"];
+    BOOL ok = [NSFileManager.defaultManager isExecutableFileAtPath:nsx26] && [NSFileManager.defaultManager fileExistsAtPath:libjb];
+    return ok ? nsx26 : nil;
+}
+
 + (NSString *)toolPath {
     // x8A4 supports up to 18.4; nsx26 does the same with Dopamine's libjailbreak on 18.5+ and 26
     NSOperatingSystemVersion v = NSProcessInfo.processInfo.operatingSystemVersion;
-    if (v.majorVersion > 18 || (v.majorVersion == 18 && v.minorVersion >= 5)) {
-        NSString *nsx26 = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"nsx26"];
-        NSString *libjb = [self.jbroot stringByAppendingPathComponent:@"basebin/libjailbreak.dylib"];
-        BOOL ok = [NSFileManager.defaultManager isExecutableFileAtPath:nsx26] && [NSFileManager.defaultManager fileExistsAtPath:libjb];
-        return ok ? nsx26 : nil;
-    }
+    if (v.majorVersion > 18 || (v.majorVersion == 18 && v.minorVersion >= 5)) return [self nsx26Path];
     NSArray *candidates = @[
         // Bundled build (x8A4/, patched for Dopamine 3)
         [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"x8A4"],
@@ -38,9 +40,35 @@ extern int posix_spawnattr_set_persona_gid_np(const posix_spawnattr_t *__restric
     return nil;
 }
 
+// iOS 18.0 - 18.4: x8A4 reads the values but can't find IODTNVRAM, so -V / -S go to nsx26
++ (NSString *)nvramToolPath {
+    NSOperatingSystemVersion v = NSProcessInfo.processInfo.operatingSystemVersion;
+    return v.majorVersion == 18 && v.minorVersion < 5 ? [self nsx26Path] : nil;
+}
+
 + (NSXResult *)runWithArguments:(NSArray<NSString *> *)arguments {
+    NSString *nvramTool = [self nvramToolPath];
+    if (!nvramTool || ![self toolPath]) return [self runTool:[self toolPath] arguments:arguments];
+    NSMutableArray *rest = [NSMutableArray array], *nvram = [NSMutableArray array];
+    for (NSUInteger i = 0; i < arguments.count; i++) {
+        NSString *a = arguments[i];
+        if ([a isEqualToString:@"-V"]) [nvram addObject:a];
+        else if ([a isEqualToString:@"-S"]) {
+            [nvram addObject:a];
+            if (i + 1 < arguments.count) [nvram addObject:arguments[++i]];
+        } else [rest addObject:a];
+    }
+    if (!nvram.count) return [self runTool:[self toolPath] arguments:arguments];
+    NSXResult *second = [self runTool:nvramTool arguments:nvram];
+    if (!rest.count) return second;
+    NSXResult *result = [self runTool:[self toolPath] arguments:rest];
+    result.status = result.status ?: second.status;
+    result.output = [NSString stringWithFormat:@"%@\n--- nsx26 ---\n%@", result.output, second.output];
+    return result;
+}
+
++ (NSXResult *)runTool:(NSString *)path arguments:(NSArray<NSString *> *)arguments {
     NSXResult *result = [NSXResult new];
-    NSString *path = [self toolPath];
     if (!path) {
         result.status = -1;
         result.output = @"x8A4 was not found. Reinstall NonceSetX.";
@@ -81,7 +109,7 @@ extern int posix_spawnattr_set_persona_gid_np(const posix_spawnattr_t *__restric
     if (ret != 0) {
         close(fds[0]);
         result.status = -1;
-        result.output = [NSString stringWithFormat:@"Failed to run x8A4: %s", strerror(ret)];
+        result.output = [NSString stringWithFormat:@"Failed to run %@: %s", path.lastPathComponent, strerror(ret)];
         return result;
     }
 

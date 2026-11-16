@@ -12,14 +12,15 @@ Check the APNonce generator and APNonce on Dopamine, save SHSH blobs for them, a
 ## Requirements
 - Dopamine (rootless or roothide) on iOS 15 - 18 or 26. Other jailbreaks (palera1n, Relaxin, ...) are not supported
 - iOS 15.0 - 18.4: the bundled x8A4, which needs `libkrw0` and a libkrw plug-in (`libkrw0-dopamine`)
-- iOS 18.5 and later / 26: the bundled `nsx26`, which uses Dopamine's `libjailbreak` (`<jbroot>/basebin`)
+- iOS 18.5 and later / 26: the bundled `nsx26`, which uses Dopamine's `libjailbreak` (`<jbroot>/basebin`). On 18.0 - 18.4 it is also used for setting the generator
 
 ## Features
 - Show the current generator, APNonce, Cryptex1 seed and Cryptex1 nonce (iOS 16+). The APNonce matches what iBoot reports in recovery mode (`irecovery -q`). When no generator is stored, the one iBoot booted with (`IODeviceTree:/chosen` `boot-nonce`) is shown
 - Copy a ready-to-run `tsschecker` command to save blobs for the current generator / APNonce
-  - iOS 16+: use tsschecker build 438 or 440. Build 444 skips the Cryptex1 components in the TSS request and fails with "IS NOT being signed"
+  - The command is for [1Conan's tsschecker](https://github.com/1Conan/tsschecker). tihmstar's original (build 347) has no Cryptex1 options (`-x`, `-t`) and uses `-c` for the cache
+  - iOS 16+: use tsschecker build 438 or 440. Builds 444 and 449 skip the Cryptex1 components in the TSS request and fail with "IS NOT being signed"
   - Cellular models: the command reads the BbSNUM with `ideviceinfo`, so run it on a Mac with libimobiledevice (`brew install libimobiledevice`) and the device connected over USB and trusted. The BbSNUM never changes, so it can be passed with `-c` afterwards; `-b` skips the baseband ticket
-  - No working futurerestore is available right now; keep the blobs for later
+  - Saved blobs and a matching generator don't prove that a downgrade will work: a restore also needs a SEP and baseband compatible with the target iOS. No working futurerestore is available right now; keep the blobs for later
 - Load an `.shsh2` and check whether its generator matches the device
 - ECID (hidden by default), model and board config
 - Localized in 17 languages (the same set as Horythia). License texts of bundled software are in the app (Credits > Licenses, `Resources/Acknowledgements.txt`)
@@ -36,9 +37,10 @@ How the write is done depends on the NVRAM handler, detected at run time:
 | 15.0 - 15.3 | none (IODTNVRAM dict) | edit the dict entry, sync | iPhone 7 Plus 15.1 (roothide) |
 | 15.4 - 17 | CHRP | edit the dict entry it shares with IODTNVRAM, set `_newData`, sync | iPhone 12 mini 15.4.1, iPad 6 17.5.1 |
 | 16 - 17 | V3 | edit the `_varEntries` entry (data, crc32, append state), sync | iPhone 14 Pro 16.5 |
+| 18.0 - 18.4 | CHRP (`nsx26` for `-V` / `-S`, x8A4 for reading) | same as CHRP above (`_varDict` is a reference to the IODTNVRAM one, one more read) | iPad 7 18.3.2 |
 | 18.5+, 26 | CHRP (`nsx26`) | same as CHRP above | iPad 7 18.6, iPhone 11 Pro 26.0.1 |
 
-A device that never had a generator saved has no `boot-nonce` entry, and iBoot then picks a new random generator on every boot. In CHRP mode `-S` first asks AppleMobileApNonce to generate one (`generateNonce`, the same call the OS uses before an update), which creates the entry, then edits it. iOS 18.0 - 18.4 is not checked yet. palera1n (no kernel r/w) reports "not supported".
+A device that never had a generator saved has no `boot-nonce` entry, and iBoot then picks a new random generator on every boot. In CHRP mode `-S` first asks AppleMobileApNonce to generate one (`generateNonce`, the same call the OS uses before an update), which creates the entry, then edits it. On iOS 18.0 - 18.4 x8A4 can't find IODTNVRAM, so the write goes through `nsx26`. palera1n (no kernel r/w) reports "not supported".
 
 Setting the Cryptex1 seed and dumping IOAESAccelerator keys are not exposed on purpose (the former can bootloop).
 
