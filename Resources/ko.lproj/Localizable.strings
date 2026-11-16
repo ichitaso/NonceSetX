@@ -9,11 +9,16 @@
 "CRYPTEX_NONCE" = "Cryptex1 Nonce (Entangled Nonce)";
 "MATCH_OK" = "✓ generator가 SHSH blob과 일치합니다";
 "MATCH_NG" = "✗ generator가 SHSH blob과 일치하지 않습니다";
+"MATCH_ALL_OK" = "✓ 모든 값이 SHSH blob과 일치합니다";
+"MATCH_SOME_NG" = "✗ SHSH blob과 일치하지 않는 값이 있습니다";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "사용자 지정";
 "LOAD_SHSH" = "SHSH blob 불러오기 (.shsh2)";
 "BLOB_LOADED" = "%1$@ 불러옴\nGenerator: %2$@";
+"REMOVE_SHSH" = "불러온 SHSH blob 제거";
+"BLOB_RESULT_BODY" = "SHSH blob: %1$@\n이 기기: %2$@";
+"BLOB_RESULT_SET_HINT" = "blob의 generator를 3단계에 입력했습니다. “%@”를 탭하면 일치합니다.";
 "BLOB_NO_GENERATOR_TITLE" = "generator가 없습니다";
 "BLOB_NO_GENERATOR_BODY" = "이 파일에는 generator가 없습니다. generator와 함께 저장된 .shsh2 파일을 선택하세요.";
 "SET_BUTTON" = "Generator 설정";
@@ -39,7 +44,7 @@
 "SAVE_TITLE" = "SHSH blob 저장";
 "SAVE_BODY" = "A12 이상에서는 기기의 현재 generator와 APNonce에 대한 blob을 저장합니다. tsschecker 명령을 복사해 Mac에서 실행하세요. generator는 blob과 함께 보관하세요. 이 명령은 1Conan의 tsschecker용입니다. tihmstar의 원본은 옵션이 다릅니다.";
 "COMPARE_TITLE" = "저장된 blob과 비교";
-"COMPARE_BODY" = ".shsh2 파일을 불러와 그 generator가 현재 기기의 것과 일치하는지 확인합니다.";
+"COMPARE_BODY" = ".shsh2 파일을 불러오면 generator, APNonce, Cryptex1 seed / nonce가 현재 기기와 일치하는지 표시합니다.";
 "SET_TITLE" = "generator 설정";
 "SET_BODY" = "저장한 SHSH blob의 generator를 기기에 다시 씁니다. 즉시 NVRAM에 저장됩니다.";
 "SET_SUPPORTED" = "이 기기에서 지원됩니다.";

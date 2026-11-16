@@ -9,11 +9,16 @@
 "CRYPTEX_NONCE" = "Cryptex1 ノンス（Entangled Nonce）";
 "MATCH_OK" = "✓ SHSH のジェネレーターと一致しています";
 "MATCH_NG" = "✗ SHSH のジェネレーターと一致していません";
+"MATCH_ALL_OK" = "✓ SHSH のすべての値と一致しています";
+"MATCH_SOME_NG" = "✗ SHSH と一致しない値があります";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "手入力";
 "LOAD_SHSH" = "SHSH を読み込む（.shsh2）";
 "BLOB_LOADED" = "%1$@ を読み込みました\nジェネレーター：%2$@";
+"REMOVE_SHSH" = "読み込んだ SHSH を外す";
+"BLOB_RESULT_BODY" = "SHSH：%1$@\nこの端末：%2$@";
+"BLOB_RESULT_SET_HINT" = "SHSH のジェネレーターをステップ 3 に入力しました。「%@」をタップすると一致します。";
 "BLOB_NO_GENERATOR_TITLE" = "ジェネレーターが見つかりません";
 "BLOB_NO_GENERATOR_BODY" = "このファイルにはジェネレーターがありません。ジェネレーター付きで保存した .shsh2 を選んでください。";
 "SET_BUTTON" = "ジェネレーターを設定";
@@ -39,7 +44,7 @@
 "SAVE_TITLE" = "SHSH を保存する";
 "SAVE_BODY" = "A12 以降では、今の端末のジェネレーターと APNonce の組み合わせで SHSH を保存します。tsschecker のコマンドをコピーして、Mac で実行してください。ジェネレーターも SHSH と一緒に控えておきます。コマンドは 1Conan 版の tsschecker 用です。tihmstar 氏の本家版はオプションが異なります。";
 "COMPARE_TITLE" = "保存した SHSH と比べる";
-"COMPARE_BODY" = ".shsh2 を読み込むと、そのジェネレーターが今の端末と一致しているか表示します。";
+"COMPARE_BODY" = ".shsh2 を読み込むと、ジェネレーター・APNonce・Cryptex1 のシードとノンスが今の端末と一致しているか表示します。";
 "SET_TITLE" = "ジェネレーターを設定する";
 "SET_BODY" = "保存した SHSH のジェネレーターを端末に書き戻します。NVRAM にすぐ保存されます。";
 "SET_SUPPORTED" = "この端末は設定に対応しています。";

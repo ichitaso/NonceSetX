@@ -9,11 +9,16 @@
 "CRYPTEX_NONCE" = "Cryptex1 Nonce (Entangled Nonce)";
 "MATCH_OK" = "✓ Generator cocok dengan SHSH blob Anda";
 "MATCH_NG" = "✗ Generator tidak cocok dengan SHSH blob Anda";
+"MATCH_ALL_OK" = "✓ Semua nilai cocok dengan SHSH blob Anda";
+"MATCH_SOME_NG" = "✗ Ada nilai yang tidak cocok dengan SHSH blob Anda";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "Kustom";
 "LOAD_SHSH" = "Muat SHSH blob (.shsh2)";
 "BLOB_LOADED" = "%1$@ dimuat\nGenerator: %2$@";
+"REMOVE_SHSH" = "Hapus SHSH blob yang dimuat";
+"BLOB_RESULT_BODY" = "SHSH blob: %1$@\nPerangkat ini: %2$@";
+"BLOB_RESULT_SET_HINT" = "Generator dari blob sudah dimasukkan di langkah 3. Ketuk “%@” agar keduanya cocok.";
 "BLOB_NO_GENERATOR_TITLE" = "Generator tidak ditemukan";
 "BLOB_NO_GENERATOR_BODY" = "File ini tidak memiliki generator. Pilih file .shsh2 yang disimpan dengan generator.";
 "SET_BUTTON" = "Atur Generator";
@@ -39,7 +44,7 @@
 "SAVE_TITLE" = "Simpan SHSH blob";
 "SAVE_BODY" = "Pada A12 dan yang lebih baru, Anda menyimpan blob untuk generator dan APNonce yang dimiliki perangkat saat ini. Salin perintah tsschecker dan jalankan di Mac Anda. Simpan generator bersama blob-nya. Perintah ini untuk tsschecker milik 1Conan; versi asli tihmstar memakai opsi yang berbeda.";
 "COMPARE_TITLE" = "Bandingkan dengan blob tersimpan";
-"COMPARE_BODY" = "Muat file .shsh2 untuk melihat apakah generator-nya cocok dengan yang ada di perangkat Anda saat ini.";
+"COMPARE_BODY" = "Muat file .shsh2 untuk melihat apakah generator, APNonce, serta seed / nonce Cryptex1 di dalamnya cocok dengan perangkat Anda saat ini.";
 "SET_TITLE" = "Atur generator";
 "SET_BODY" = "Menulis kembali generator dari SHSH blob tersimpan ke perangkat. Langsung disimpan ke NVRAM.";
 "SET_SUPPORTED" = "Didukung di perangkat ini.";

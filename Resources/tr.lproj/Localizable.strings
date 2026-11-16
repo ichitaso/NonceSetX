@@ -9,11 +9,16 @@
 "CRYPTEX_NONCE" = "Cryptex1 Nonce (Entangled Nonce)";
 "MATCH_OK" = "✓ Generator SHSH blob ile eşleşiyor";
 "MATCH_NG" = "✗ Generator SHSH blob ile eşleşmiyor";
+"MATCH_ALL_OK" = "✓ Tüm değerler SHSH blob ile eşleşiyor";
+"MATCH_SOME_NG" = "✗ Bazı değerler SHSH blob ile eşleşmiyor";
 "PRESET_UNC0VER" = "unc0ver";
 "PRESET_ELECTRA" = "Electra";
 "PRESET_CUSTOM" = "Özel";
 "LOAD_SHSH" = "SHSH blob yükle (.shsh2)";
 "BLOB_LOADED" = "%1$@ yüklendi\nGenerator: %2$@";
+"REMOVE_SHSH" = "Yüklenen SHSH blob'u kaldır";
+"BLOB_RESULT_BODY" = "SHSH blob: %1$@\nBu cihaz: %2$@";
+"BLOB_RESULT_SET_HINT" = "Blob'un generator'ı 3. adıma girildi. Eşleşmeleri için “%@” düğmesine dokunun.";
 "BLOB_NO_GENERATOR_TITLE" = "Generator bulunamadı";
 "BLOB_NO_GENERATOR_BODY" = "Bu dosyada generator yok. Generator ile kaydedilmiş bir .shsh2 dosyası seçin.";
 "SET_BUTTON" = "Generator’ı ayarla";
@@ -39,7 +44,7 @@
 "SAVE_TITLE" = "SHSH blob’larını kaydet";
 "SAVE_BODY" = "A12 ve sonrasında, cihazınızın şu anki generator ve APNonce değerleri için blob kaydedersiniz. tsschecker komutunu kopyalayıp Mac’inizde çalıştırın. Generator’ı blob ile birlikte saklayın. Komut 1Conan’ın tsschecker’ı içindir; tihmstar’ın orijinali farklı seçenekler kullanır.";
 "COMPARE_TITLE" = "Kayıtlı bir blob ile karşılaştır";
-"COMPARE_BODY" = "Generator’ının cihazınızdaki şu anki ile eşleşip eşleşmediğini görmek için bir .shsh2 dosyası yükleyin.";
+"COMPARE_BODY" = "Generator, APNonce ve Cryptex1 seed / nonce değerlerinin cihazınızdakilerle eşleşip eşleşmediğini görmek için bir .shsh2 dosyası yükleyin.";
 "SET_TITLE" = "Generator’ı ayarla";
 "SET_BODY" = "Kayıtlı SHSH blob’unuzdaki generator’ı cihaza geri yazar. Hemen NVRAM’e kaydedilir.";
 "SET_SUPPORTED" = "Bu cihazda destekleniyor.";

@@ -14,7 +14,7 @@ INSTALL_TARGET_PROCESSES = NonceSetX
 APPLICATION_NAME = NonceSetX
 $(APPLICATION_NAME)_FILES = main.m NSXAppDelegate.m NSXRootViewController.m NSXRunner.m
 $(APPLICATION_NAME)_FRAMEWORKS = UIKit Foundation UniformTypeIdentifiers IOKit SafariServices
-$(APPLICATION_NAME)_CFLAGS = -fobjc-arc
+$(APPLICATION_NAME)_CFLAGS = -fobjc-arc -DPACKAGE_VERSION='@"$(THEOS_PACKAGE_BASE_VERSION)"'
 $(APPLICATION_NAME)_CODESIGN_FLAGS = -Sent.xml
 
 include $(THEOS)/makefiles/common.mk

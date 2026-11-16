@@ -21,7 +21,7 @@ Check the APNonce generator and APNonce on Dopamine, save SHSH blobs for them, a
   - iOS 16+: use tsschecker build 438 or 440. Builds 444 and 449 skip the Cryptex1 components in the TSS request and fail with "IS NOT being signed"
   - Cellular models: the command reads the BbSNUM with `ideviceinfo`, so run it on a Mac with libimobiledevice (`brew install libimobiledevice`) and the device connected over USB and trusted. The BbSNUM never changes, so it can be passed with `-c` afterwards; `-b` skips the baseband ticket
   - Saved blobs and a matching generator don't prove that a downgrade will work: a restore also needs a SEP and baseband compatible with the target iOS. No working futurerestore is available right now; keep the blobs for later
-- Load an `.shsh2` and check whether its generator matches the device
+- Load an `.shsh2` and check whether its generator, APNonce (`BNCH` in the ApImg4Ticket) and Cryptex1 seed / nonce (`cnch` in the Cryptex1 ticket) match the device. Cryptex1 values are skipped on iOS 15 and for blobs without them
 - ECID (hidden by default), model and board config
 - Localized in 17 languages (the same set as Horythia). License texts of bundled software are in the app (Credits > Licenses, `Resources/Acknowledgements.txt`)
 

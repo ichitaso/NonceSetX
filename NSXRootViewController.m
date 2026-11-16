@@ -6,15 +6,74 @@
 #import <dlfcn.h>
 #import <sys/sysctl.h>
 
-#define VERSION @"v1.0.0"
 #define L(key) NSLocalizedString(key, nil)
 
 static NSString *const kPresetUnc0ver = @"0x1111111111111111";
 static NSString *const kPresetElectra = @"0xbd34a880be0b53f3";
 static NSString *const kBlobGeneratorKey = @"BlobGenerator";
 static NSString *const kBlobNameKey = @"BlobName";
+static NSString *const kBlobAPNonceKey = @"BlobAPNonce";
+static NSString *const kBlobCryptexSeedKey = @"BlobCryptexSeed";
+static NSString *const kBlobCryptexNonceKey = @"BlobCryptexNonce";
 
 static CFTypeRef (*$MGCopyAnswer)(CFStringRef);
+
+// DER element header: tag (incl. multi-byte private tags like MANB), length (up to 4 bytes)
+static BOOL DERNext(const uint8_t *p, size_t n, size_t *hdr, size_t *len) {
+    if (n < 2) return NO;
+    size_t i = 1;
+    if ((p[0] & 0x1F) == 0x1F) {
+        while (i < n && (p[i] & 0x80)) i++;
+        i++;
+    }
+    if (i >= n) return NO;
+    size_t l = p[i++];
+    if (l & 0x80) {
+        size_t c = l & 0x7F;
+        if (!c || c > 4 || c > n - i) return NO;
+        for (l = 0; c; c--) l = (l << 8) | p[i++];
+    }
+    if (l > n - i) return NO;
+    *hdr = i;
+    *len = l;
+    return YES;
+}
+
+// IM4M property value: SEQUENCE { IA5String name, OCTET STRING value } (MANP BNCH, Cryptex1 cnch)
+static NSData *IM4MValue(const uint8_t *p, size_t n, const char *name, int depth) {
+    size_t nl = strlen(name), h, l;
+    while (n && DERNext(p, n, &h, &l)) {
+        const uint8_t *v = p + h;
+        size_t h2, l2, h3, l3;
+        if (p[0] == 0x30 && DERNext(v, l, &h2, &l2) && v[0] == 0x16 && l2 == nl && !memcmp(v + h2, name, nl)) {
+            const uint8_t *w = v + h2 + l2;
+            if (DERNext(w, l - h2 - l2, &h3, &l3) && w[0] == 0x04) return [NSData dataWithBytes:w + h3 length:l3];
+        }
+        if ((p[0] & 0x20) && depth < 16) {
+            NSData *found = IM4MValue(v, l, name, depth + 1);
+            if (found) return found;
+        }
+        p += h + l;
+        n -= h + l;
+    }
+    return nil;
+}
+
+static NSString *TicketValue(id ticket, const char *name) {
+    if (![ticket isKindOfClass:NSData.class]) return nil;
+    NSData *d = IM4MValue([ticket bytes], [ticket length], name, 0);
+    if (!d.length) return nil;
+    NSMutableString *hex = [NSMutableString string];
+    const uint8_t *b = d.bytes;
+    for (NSUInteger i = 0; i < d.length; i++) [hex appendFormat:@"%02x", b[i]];
+    return hex;
+}
+
+static BOOL AllMatch(NSArray<NSArray *> *rows) {
+    for (NSArray *row in rows)
+        if (![row[1] boolValue]) return NO;
+    return YES;
+}
 
 static NSString *MGString(NSString *key) {
     if (!$MGCopyAnswer) return nil;
@@ -113,6 +172,7 @@ typedef NS_ENUM(NSInteger, NSXState) {
 @property (nonatomic, strong) UISegmentedControl *presetControl;
 @property (nonatomic, strong) UITextField *generatorField;
 @property (nonatomic, strong) UILabel *blobLabel;
+@property (nonatomic, strong) UIButton *blobButton;
 @property (nonatomic, strong) UIButton *setButton;
 @property (nonatomic, strong) UILabel *setSupportLabel;
 @property (nonatomic, assign) BOOL setSupported;
@@ -255,12 +315,12 @@ typedef NS_ENUM(NSInteger, NSXState) {
     [_stack addArrangedSubview:[self cardWithViews:saveViews]];
 
     // Step 2: compare with a saved blob
-    UIButton *blobButton = [self plainButton:L(@"LOAD_SHSH") image:@"doc.badge.plus" action:@selector(pickBlob)];
+    _blobButton = [self plainButton:L(@"LOAD_SHSH") image:@"doc.badge.plus" action:@selector(blobButtonTapped)];
     _blobLabel = [self captionLabel:@""];
     [_stack addArrangedSubview:[self cardWithViews:@[
         [self stepTitle:@"2" text:L(@"COMPARE_TITLE")],
         [self bodyLabelWithText:L(@"COMPARE_BODY")],
-        blobButton, _blobLabel,
+        _blobButton, _blobLabel,
     ]]];
 
     // Step 3: set the generator (x8A4 -S writes the NVRAM V3 entry directly; -V says whether this device is supported)
@@ -336,7 +396,7 @@ typedef NS_ENUM(NSInteger, NSXState) {
         [self plainButton:L(@"LICENSES") image:@"doc.text" action:@selector(showLicenses)],
     ]]];
 
-    UILabel *footer = [self captionLabel:[NSString stringWithFormat:@"%@ %@ %@ - %@\nPowered by x8A4 (Cryptiiiic)\n© 2015-2026 Cannathea by ichitaso", ProductType(), UIDevice.currentDevice.systemName, UIDevice.currentDevice.systemVersion, VERSION]];
+    UILabel *footer = [self captionLabel:[NSString stringWithFormat:@"%@ %@ %@ - v%@\nPowered by x8A4 (Cryptiiiic)\n© 2015-2026 Cannathea by ichitaso", ProductType(), UIDevice.currentDevice.systemName, UIDevice.currentDevice.systemVersion, PACKAGE_VERSION]];
     footer.textAlignment = NSTextAlignmentCenter;
     [_stack addArrangedSubview:footer];
 
@@ -523,14 +583,11 @@ typedef NS_ENUM(NSInteger, NSXState) {
     self.cryptexValue.text = self.cryptexNonce ?: none;
     self.cryptexSeedValue.text = self.cryptexSeed ? [@"0x" stringByAppendingString:self.cryptexSeed] : none;
 
-    NSString *blobGenerator = [NSUserDefaults.standardUserDefaults stringForKey:kBlobGeneratorKey];
-    if (blobGenerator && self.generator) {
-        BOOL match = [blobGenerator caseInsensitiveCompare:self.generator] == NSOrderedSame;
-        self.matchLabel.text = match ? L(@"MATCH_OK") : L(@"MATCH_NG");
-        self.matchLabel.textColor = match ? UIColor.systemGreenColor : UIColor.systemOrangeColor;
-        self.matchLabel.hidden = NO;
-    } else {
-        self.matchLabel.hidden = YES;
+    NSArray *rows = [self blobComparisons];
+    self.matchLabel.hidden = !rows.count;
+    if (rows.count) {
+        self.matchLabel.text = [self matchTitleForRows:rows];
+        self.matchLabel.textColor = AllMatch(rows) ? UIColor.systemGreenColor : UIColor.systemOrangeColor;
     }
 
     if (self.state != NSXStateReady) {
@@ -658,6 +715,39 @@ typedef NS_ENUM(NSInteger, NSXState) {
     else self.presetControl.selectedSegmentIndex = 2;
 }
 
+// { name, match } for each value both the blob and this device have (no Cryptex1 on iOS 15 or in old blobs)
+- (NSArray<NSArray *> *)blobComparisons {
+    NSArray *pairs = @[
+        @[@"GENERATOR", kBlobGeneratorKey, self.generator ?: @""],
+        @[@"APNONCE", kBlobAPNonceKey, self.apnonce ?: @""],
+        @[@"CRYPTEX_SEED", kBlobCryptexSeedKey, self.cryptexSeed ?: @""],
+        @[@"CRYPTEX_NONCE", kBlobCryptexNonceKey, self.cryptexNonce ?: @""],
+    ];
+    NSMutableArray *rows = [NSMutableArray array];
+    for (NSArray *pair in pairs) {
+        NSString *blob = [NSUserDefaults.standardUserDefaults stringForKey:pair[1]], *device = pair[2];
+        if (blob.length && device.length) [rows addObject:@[L(pair[0]), @([blob caseInsensitiveCompare:device] == NSOrderedSame)]];
+    }
+    return rows;
+}
+
+- (NSString *)matchTitleForRows:(NSArray<NSArray *> *)rows {
+    BOOL match = AllMatch(rows);
+    if (rows.count == 1 && [rows[0][0] isEqualToString:L(@"GENERATOR")]) return match ? L(@"MATCH_OK") : L(@"MATCH_NG");
+    return match ? L(@"MATCH_ALL_OK") : L(@"MATCH_SOME_NG");
+}
+
+- (void)blobButtonTapped {
+    if (![NSUserDefaults.standardUserDefaults stringForKey:kBlobGeneratorKey]) {
+        [self pickBlob];
+        return;
+    }
+    for (NSString *key in @[kBlobGeneratorKey, kBlobNameKey, kBlobAPNonceKey, kBlobCryptexSeedKey, kBlobCryptexNonceKey])
+        [NSUserDefaults.standardUserDefaults removeObjectForKey:key];
+    [self loadSavedBlob];
+    [self updateStatus];
+}
+
 - (void)pickBlob {
     NSMutableArray *types = [NSMutableArray array];
     for (NSString *ext in @[@"shsh2", @"shsh", @"plist"]) {
@@ -684,19 +774,37 @@ typedef NS_ENUM(NSInteger, NSXState) {
         return;
     }
     generator = generator.lowercaseString;
-    [NSUserDefaults.standardUserDefaults setObject:generator forKey:kBlobGeneratorKey];
-    [NSUserDefaults.standardUserDefaults setObject:url.lastPathComponent forKey:kBlobNameKey];
+    NSString *seed = [blob[@"cryptexSeed"] isKindOfClass:NSString.class] ? [blob[@"cryptexSeed"] lowercaseString] : nil;
+    if ([seed hasPrefix:@"0x"]) seed = [seed substringFromIndex:2];
+    NSDictionary *cryptex = [blob[@"cryptexTicket"] isKindOfClass:NSDictionary.class] ? blob[@"cryptexTicket"] : nil;
+    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
+    [defaults setObject:generator forKey:kBlobGeneratorKey];
+    [defaults setObject:url.lastPathComponent forKey:kBlobNameKey];
+    // nil removes the value left by a previous blob
+    [defaults setObject:TicketValue(blob[@"ApImg4Ticket"], "BNCH") forKey:kBlobAPNonceKey];
+    [defaults setObject:seed.length ? seed : nil forKey:kBlobCryptexSeedKey];
+    [defaults setObject:TicketValue(cryptex[@"Cryptex1,Ticket"], "cnch") forKey:kBlobCryptexNonceKey];
     // Step 3 writes the blob's generator back
     self.generatorField.text = generator;
     [self generatorEdited];
     [self loadSavedBlob];
     [self updateStatus];
+    NSArray *rows = [self blobComparisons];
+    if (!rows.count) return;
+    NSMutableString *body = [NSMutableString string];
+    for (NSArray *row in rows) [body appendFormat:@"%@ %@\n", [row[1] boolValue] ? @"✓" : @"✗", row[0]];
+    if (self.generator) [body appendFormat:@"\n%@", [NSString stringWithFormat:L(@"BLOB_RESULT_BODY"), generator, self.generator]];
+    if (self.generator && ![generator isEqualToString:self.generator.lowercaseString] && self.setSupported)
+        [body appendFormat:@"\n\n%@", [NSString stringWithFormat:L(@"BLOB_RESULT_SET_HINT"), L(@"SET_BUTTON")]];
+    [self alertWithTitle:[self matchTitleForRows:rows] message:body];
 }
 
 - (void)loadSavedBlob {
     NSString *name = [NSUserDefaults.standardUserDefaults stringForKey:kBlobNameKey];
     NSString *generator = [NSUserDefaults.standardUserDefaults stringForKey:kBlobGeneratorKey];
     self.blobLabel.hidden = !generator;
+    [self.blobButton setTitle:[@" " stringByAppendingString:generator ? L(@"REMOVE_SHSH") : L(@"LOAD_SHSH")] forState:UIControlStateNormal];
+    [self.blobButton setImage:[UIImage systemImageNamed:generator ? @"xmark.circle" : @"doc.badge.plus"] forState:UIControlStateNormal];
     if (generator) self.blobLabel.text = [NSString stringWithFormat:L(@"BLOB_LOADED"), name ?: @"SHSH", generator];
     if (!self.generatorField.text.length) {
         self.presetControl.selectedSegmentIndex = 0;
