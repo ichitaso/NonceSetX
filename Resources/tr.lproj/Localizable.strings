@@ -59,7 +59,7 @@
 "BASEBAND_BODY" = "İleride blob ile geri yükleme için baseband değerleri de gerekecek. ChipID, CertId ve seri numarası (BbSNUM) cihazda okunamaz; libimobiledevice kurulu bir Mac’te (brew install libimobiledevice), cihaz USB ile bağlı ve güvenilir olarak onaylanmışken bunları kontrol edin.";
 "COPY_BASEBAND_COMMAND" = "Mac için komutu kopyala";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 ve sonrası: komut Cryptex1 seed’ini ve Entangled Nonce’u (-x, -t) içerir, bu yüzden tsschecker build 438 veya 440’ı (Cryptex1 desteği) kullanın. Build 444 / 449 Cryptex1 blob’larını kaydedemez (IS NOT being signed gösterir). -E yalnızca silerek kurulum biletlerini ister.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 ve sonrası: komut Cryptex1 seed’ini ve Entangled Nonce’u (-x, -t) içerir, bu yüzden tsschecker build 450 veya sonrasını (Cryptex1 desteği) kullanın. Build 444 / 449 kullanılabilir bir Cryptex1 blob’u kaydedemez. -E yalnızca silerek kurulum biletlerini ister.";
 "SAVE_BASEBAND_NOTE" = "Hücresel model: Mac’e libimobiledevice kurun (brew install libimobiledevice), ardından bu cihaz USB ile bağlı ve güvenilir olarak onaylanmışken komutu Terminal’e yapıştırın. BbSNUM’u ideviceinfo ile okur ve onaltılığa çevirir. BbSNUM hiç değişmez; bir kez not ettikten sonra bağlamadan -c ile verebilirsiniz. Baseband bileti olmadan kaydetmek için bunun yerine -b kullanın.";
 "SAVE_LIMITS_NOTE" = "Blob kaydetmek ve generator’ın eşleşmesi düşürmenin çalışacağını kanıtlamaz: geri yükleme, hedef iOS ile uyumlu bir SEP ve baseband da gerektirir. Şu anda çalışan bir futurerestore yok, bu yüzden çıkana kadar blob’u saklayın.";
 "COPY_ALL_VALUES" = "Tüm değerleri kopyala";

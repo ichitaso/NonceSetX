@@ -853,11 +853,11 @@ typedef NS_ENUM(NSInteger, NSXState) {
     // Cryptex1 (iOS 16+): seed with 0x, nonce without (needs a Cryptex1-capable tsschecker)
     if (self.cryptexSeed.length && self.cryptexNonce.length) [cmd appendFormat:@" -x 0x%@ -t %@ -E", self.cryptexSeed, self.cryptexNonce];
     [cmd appendString:@" -l -s"];
-    // Cellular models: the BbSNUM is only readable from a computer, so the command reads it there (base64 -> hex).
+    // Cellular models: the BbSNUM is only readable from a computer, so the command reads it there (tsschecker accepts base64).
     // Wi-Fi models skip the baseband ticket
     if ([MGString(@"HasBaseband") boolValue]) {
         NSString *udid = MGString(@"UniqueDeviceID");
-        [cmd appendFormat:@" -c $(ideviceinfo%@ -k BasebandSerialNumber | base64 -d | xxd -p | tr -d '\\n')", udid.length ? [@" -u " stringByAppendingString:udid] : @""];
+        [cmd appendFormat:@" -c $(ideviceinfo%@ -k BasebandSerialNumber)", udid.length ? [@" -u " stringByAppendingString:udid] : @""];
     } else {
         [cmd appendString:@" -b"];
     }

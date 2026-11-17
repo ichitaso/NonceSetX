@@ -18,7 +18,7 @@ Check the APNonce generator and APNonce on Dopamine, save SHSH blobs for them, a
 - Show the current generator, APNonce, Cryptex1 seed and Cryptex1 nonce (iOS 16+). The APNonce matches what iBoot reports in recovery mode (`irecovery -q`). When no generator is stored, the one iBoot booted with (`IODeviceTree:/chosen` `boot-nonce`) is shown
 - Copy a ready-to-run `tsschecker` command to save blobs for the current generator / APNonce
   - The command is for [1Conan's tsschecker](https://github.com/1Conan/tsschecker). tihmstar's original (build 347) has no Cryptex1 options (`-x`, `-t`) and uses `-c` for the cache
-  - iOS 16+: use tsschecker build 438 or 440. Builds 444 and 449 skip the Cryptex1 components in the TSS request and fail with "IS NOT being signed"
+  - iOS 16+: use tsschecker build 450 or later. Builds 444 and 449 skip the Cryptex1 components in the TSS request: 444 fails with "IS NOT being signed", 449 saves a Cryptex1 ticket without them
   - Cellular models: the command reads the BbSNUM with `ideviceinfo`, so run it on a Mac with libimobiledevice (`brew install libimobiledevice`) and the device connected over USB and trusted. The BbSNUM never changes, so it can be passed with `-c` afterwards; `-b` skips the baseband ticket
   - Saved blobs and a matching generator don't prove that a downgrade will work: a restore also needs a SEP and baseband compatible with the target iOS. No working futurerestore is available right now; keep the blobs for later
 - Load an `.shsh2` and check whether its generator, APNonce (`BNCH` in the ApImg4Ticket) and Cryptex1 seed / nonce (`cnch` in the Cryptex1 ticket) match the device. Cryptex1 values are skipped on iOS 15 and for blobs without them

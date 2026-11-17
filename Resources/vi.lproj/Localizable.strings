@@ -59,7 +59,7 @@
 "BASEBAND_BODY" = "Việc khôi phục bằng blob sau này cũng cần các giá trị baseband. ChipID, CertId và số sê-ri (BbSNUM) không đọc được trên thiết bị, hãy kiểm tra trên Mac đã cài libimobiledevice (brew install libimobiledevice) khi thiết bị được kết nối qua USB và đã tin cậy.";
 "COPY_BASEBAND_COMMAND" = "Sao chép lệnh cho Mac";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 trở lên: lệnh bao gồm seed Cryptex1 và Entangled Nonce (-x, -t), vì vậy hãy dùng tsschecker build 438 hoặc 440 (hỗ trợ Cryptex1). Build 444 / 449 không lưu được blob Cryptex1 (báo IS NOT being signed). -E chỉ yêu cầu vé cho cài đặt có xóa.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 trở lên: lệnh bao gồm seed Cryptex1 và Entangled Nonce (-x, -t), vì vậy hãy dùng tsschecker build 450 trở lên (hỗ trợ Cryptex1). Build 444 / 449 không lưu được blob Cryptex1 dùng được. -E chỉ yêu cầu vé cho cài đặt có xóa.";
 "SAVE_BASEBAND_NOTE" = "Kiểu máy di động: cài libimobiledevice trên Mac (brew install libimobiledevice), rồi dán lệnh vào Terminal khi thiết bị này được kết nối qua USB và đã tin cậy. Lệnh đọc BbSNUM bằng ideviceinfo và chuyển sang thập lục phân. BbSNUM không bao giờ thay đổi, ghi lại một lần là lần sau có thể truyền bằng -c mà không cần kết nối. Dùng -b thay thế để lưu mà không có vé baseband.";
 "SAVE_LIMITS_NOTE" = "Lưu blob và generator khớp không đảm bảo hạ cấp sẽ thành công: việc khôi phục còn cần SEP và baseband tương thích với iOS đích. Hiện chưa có futurerestore nào hoạt động, hãy giữ blob cho đến khi có.";
 "COPY_ALL_VALUES" = "Sao chép tất cả giá trị";

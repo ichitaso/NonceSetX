@@ -59,7 +59,7 @@
 "BASEBAND_BODY" = "Для будущего восстановления с blob также понадобятся значения модема. ChipID, CertId и серийный номер (BbSNUM) нельзя прочитать на устройстве, проверьте их на Mac с установленным libimobiledevice (brew install libimobiledevice), подключив устройство по USB и подтвердив доверие.";
 "COPY_BASEBAND_COMMAND" = "Скопировать команду для Mac";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 и новее: команда включает seed Cryptex1 и Entangled Nonce (-x, -t), поэтому используйте tsschecker build 438 или 440 (поддержка Cryptex1). Build 444 / 449 не может сохранить blob Cryptex1 (выдаёт IS NOT being signed). -E запрашивает только тикеты для установки со стиранием.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 и новее: команда включает seed Cryptex1 и Entangled Nonce (-x, -t), поэтому используйте tsschecker build 450 или новее (поддержка Cryptex1). Build 444 / 449 не может сохранить рабочий blob Cryptex1. -E запрашивает только тикеты для установки со стиранием.";
 "SAVE_BASEBAND_NOTE" = "Сотовая модель: установите libimobiledevice на Mac (brew install libimobiledevice) и вставьте команду в Терминал, подключив это устройство по USB и подтвердив доверие. Она читает BbSNUM через ideviceinfo и переводит его в шестнадцатеричный вид. BbSNUM не меняется: записав его один раз, можно передавать его через -c без подключения. Чтобы сохранить без тикета модема, используйте -b.";
 "SAVE_LIMITS_NOTE" = "Сохранённые blob и совпадающий generator не гарантируют, что даунгрейд сработает: для восстановления также нужны SEP и baseband, совместимые с целевой iOS. Сейчас нет работающего futurerestore, поэтому сохраните blob до его появления.";
 "COPY_ALL_VALUES" = "Скопировать все значения";

@@ -59,7 +59,7 @@
 "BASEBAND_BODY" = "나중에 blob으로 복원할 때는 베이스밴드 값도 필요합니다. ChipID, CertId, 일련번호(BbSNUM)는 기기에서 읽을 수 없으므로 libimobiledevice가 설치된 Mac(brew install libimobiledevice)에 기기를 USB로 연결하고 신뢰한 뒤 확인하세요.";
 "COPY_BASEBAND_COMMAND" = "Mac용 명령 복사";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 이상: 명령에 Cryptex1 seed와 Entangled Nonce(-x, -t)가 포함되므로 tsschecker build 438 또는 440(Cryptex1 지원)을 사용하세요. build 444 / 449는 Cryptex1 blob을 저장할 수 없습니다(IS NOT being signed로 표시됨). -E는 지우기 설치용 티켓만 요청합니다.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 이상: 명령에 Cryptex1 seed와 Entangled Nonce(-x, -t)가 포함되므로 tsschecker build 450 이상(Cryptex1 지원)을 사용하세요. build 444 / 449로는 사용 가능한 Cryptex1 blob을 저장할 수 없습니다. -E는 지우기 설치용 티켓만 요청합니다.";
 "SAVE_BASEBAND_NOTE" = "셀룰러 모델: Mac에 libimobiledevice를 설치하고(brew install libimobiledevice), 이 기기를 USB로 연결해 신뢰한 상태에서 명령을 터미널에 붙여넣으세요. ideviceinfo로 BbSNUM을 읽어 16진수로 변환합니다. BbSNUM은 바뀌지 않으므로 한 번 기록해 두면 다음부터는 연결 없이 -c로 지정할 수 있습니다. 베이스밴드 티켓 없이 저장하려면 대신 -b를 사용하세요.";
 "SAVE_LIMITS_NOTE" = "blob을 저장하고 generator가 일치해도 다운그레이드가 된다는 보장은 없습니다. 복원에는 대상 iOS와 호환되는 SEP와 baseband도 필요합니다. 현재 작동하는 futurerestore가 없으므로 사용할 수 있는 도구가 나올 때까지 blob을 보관하세요.";
 "COPY_ALL_VALUES" = "모든 값 복사";

@@ -59,7 +59,7 @@
 "BASEBAND_BODY" = "Later herstellen met de blob vereist ook de basebandwaarden. ChipID, CertId en serienummer (BbSNUM) kunnen niet op het apparaat worden gelezen; controleer ze op een Mac met libimobiledevice geïnstalleerd (brew install libimobiledevice) en het apparaat via USB aangesloten en vertrouwd.";
 "COPY_BASEBAND_COMMAND" = "Opdracht voor de Mac kopiëren";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
-"SAVE_CRYPTEX_NOTE" = "iOS 16 en nieuwer: de opdracht bevat de Cryptex1-seed en de Entangled Nonce (-x, -t), gebruik dus tsschecker build 438 of 440 (Cryptex1-ondersteuning). Build 444 / 449 kan geen Cryptex1-blobs bewaren (meldt IS NOT being signed). -E vraagt alleen tickets aan voor een installatie met wissen.";
+"SAVE_CRYPTEX_NOTE" = "iOS 16 en nieuwer: de opdracht bevat de Cryptex1-seed en de Entangled Nonce (-x, -t), gebruik dus tsschecker build 450 of nieuwer (Cryptex1-ondersteuning). Build 444 / 449 kan geen bruikbare Cryptex1-blob bewaren. -E vraagt alleen tickets aan voor een installatie met wissen.";
 "SAVE_BASEBAND_NOTE" = "Mobiel model: installeer libimobiledevice op de Mac (brew install libimobiledevice) en plak de opdracht in Terminal terwijl dit apparaat via USB is aangesloten en vertrouwd. Hij leest de BbSNUM met ideviceinfo en zet die om naar hexadecimaal. De BbSNUM verandert nooit; eenmaal genoteerd kun je hem zonder verbinding met -c opgeven. Gebruik in plaats daarvan -b om zonder baseband-ticket te bewaren.";
 "SAVE_LIMITS_NOTE" = "Bewaarde blobs en een overeenkomende generator bewijzen niet dat een downgrade werkt: een herstel heeft ook een SEP en baseband nodig die compatibel zijn met de doel-iOS. Er is momenteel geen werkende futurerestore, dus bewaar de blob tot die er is.";
 "COPY_ALL_VALUES" = "Alle waarden kopiëren";
