@@ -60,7 +60,7 @@
 "COPY_BASEBAND_COMMAND" = "Copiar comando para el Mac";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
 "SAVE_CRYPTEX_NOTE" = "iOS 16 y posteriores: el comando incluye el seed de Cryptex1 y el Entangled Nonce (-x, -t), así que usa tsschecker build 450 o posterior (compatible con Cryptex1). La build 444 / 449 no puede guardar un blob de Cryptex1 utilizable. -E solicita solo tickets para una instalación con borrado.";
-"SAVE_BASEBAND_NOTE" = "Modelo celular: instala libimobiledevice en el Mac (brew install libimobiledevice) y pega el comando en Terminal con este dispositivo conectado por USB y marcado como de confianza. Lee el BbSNUM con ideviceinfo y lo convierte a hexadecimal. El BbSNUM no cambia, así que una vez anotado puedes pasarlo con -c sin conectar. Usa -b en su lugar para guardar sin el ticket de banda base.";
+"SAVE_BASEBAND_NOTE" = "Modelo celular: instala libimobiledevice en el Mac (brew install libimobiledevice) y pega el comando en Terminal con este dispositivo conectado por USB y marcado como de confianza. Lee el BbSNUM con ideviceinfo. El BbSNUM no cambia, así que una vez anotado puedes pasarlo con -c sin conectar. Usa -b en su lugar para guardar sin el ticket de banda base.";
 "SAVE_LIMITS_NOTE" = "Guardar blobs y que el generator coincida no garantiza que un downgrade funcione: la restauración también necesita un SEP y un baseband compatibles con el iOS de destino. Ahora mismo no hay un futurerestore que funcione, así que guarda el blob hasta que lo haya.";
 "COPY_ALL_VALUES" = "Copiar todos los valores";
 "STATUS_LIMITED" = "Limitado en este iOS: solo el generator (del árbol de dispositivos) y la guía para guardar SHSH.";

@@ -60,7 +60,7 @@
 "COPY_BASEBAND_COMMAND" = "Mac 用のコマンドをコピー";
 "CRYPTEX_SEED" = "Cryptex1 シード";
 "SAVE_CRYPTEX_NOTE" = "iOS 16 以降：コマンドに Cryptex1 のシードと Entangled Nonce（-x・-t）を含めています。tsschecker は build 450 以降（Cryptex1 対応版）を使ってください。build 444 / 449 では使える Cryptex1 の blob を保存できません。-E は消去インストール用のチケットだけを要求します。";
-"SAVE_BASEBAND_NOTE" = "セルラーモデル：Mac に libimobiledevice を入れ（brew install libimobiledevice）、この端末を USB で接続して「信頼」したまま、コマンドをターミナルに貼り付けて実行してください。ideviceinfo で BbSNUM を読み取り、16 進数に変換して渡します。BbSNUM は変わらないので、一度控えておけば次からは接続せずに -c で指定できます。ベースバンドのチケットなしで保存する場合は -b にします。";
+"SAVE_BASEBAND_NOTE" = "セルラーモデル：Mac に libimobiledevice を入れ（brew install libimobiledevice）、この端末を USB で接続して「信頼」したまま、コマンドをターミナルに貼り付けて実行してください。ideviceinfo で BbSNUM を読み取って渡します。BbSNUM は変わらないので、一度控えておけば次からは接続せずに -c で指定できます。ベースバンドのチケットなしで保存する場合は -b にします。";
 "SAVE_LIMITS_NOTE" = "blob を保存し、ジェネレーターが一致していても、ダウングレードできるとは限りません。復元には、目的の iOS と互換性のある SEP とベースバンドも必要です。現在動作する futurerestore はないため、使えるツールが出るまで blob を保管しておいてください。";
 "COPY_ALL_VALUES" = "値をまとめてコピー";
 "STATUS_LIMITED" = "この iOS では一部の機能のみ使えます（デバイスツリーからのジェネレーター表示と SHSH 保存の案内）。";

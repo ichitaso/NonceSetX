@@ -60,7 +60,7 @@
 "COPY_BASEBAND_COMMAND" = "Salin perintah untuk Mac";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
 "SAVE_CRYPTEX_NOTE" = "iOS 16 dan yang lebih baru: perintah menyertakan seed Cryptex1 dan Entangled Nonce (-x, -t), jadi gunakan tsschecker build 450 atau yang lebih baru (mendukung Cryptex1). Build 444 / 449 tidak dapat menyimpan blob Cryptex1 yang bisa dipakai. -E hanya meminta tiket untuk instalasi dengan penghapusan.";
-"SAVE_BASEBAND_NOTE" = "Model seluler: pasang libimobiledevice di Mac (brew install libimobiledevice), lalu tempel perintah di Terminal saat perangkat ini tersambung lewat USB dan sudah dipercaya. Perintah membaca BbSNUM dengan ideviceinfo dan mengubahnya ke heksadesimal. BbSNUM tidak pernah berubah, jadi setelah dicatat Anda bisa memberikannya dengan -c tanpa menyambung. Gunakan -b sebagai gantinya untuk menyimpan tanpa tiket baseband.";
+"SAVE_BASEBAND_NOTE" = "Model seluler: pasang libimobiledevice di Mac (brew install libimobiledevice), lalu tempel perintah di Terminal saat perangkat ini tersambung lewat USB dan sudah dipercaya. Perintah membaca BbSNUM dengan ideviceinfo. BbSNUM tidak pernah berubah, jadi setelah dicatat Anda bisa memberikannya dengan -c tanpa menyambung. Gunakan -b sebagai gantinya untuk menyimpan tanpa tiket baseband.";
 "SAVE_LIMITS_NOTE" = "Menyimpan blob dan generator yang cocok tidak menjamin downgrade akan berhasil: pemulihan juga memerlukan SEP dan baseband yang kompatibel dengan iOS tujuan. Saat ini belum ada futurerestore yang berfungsi, jadi simpan blob sampai tersedia.";
 "COPY_ALL_VALUES" = "Salin semua nilai";
 "STATUS_LIMITED" = "Terbatas di iOS ini: hanya generator (dari device tree) dan panduan menyimpan SHSH.";

@@ -60,7 +60,7 @@
 "COPY_BASEBAND_COMMAND" = "复制 Mac 用命令";
 "CRYPTEX_SEED" = "Cryptex1 Seed";
 "SAVE_CRYPTEX_NOTE" = "iOS 16 及更新版本：命令包含 Cryptex1 seed 和 Entangled Nonce（-x、-t），请使用 tsschecker build 450 或更新版本（支持 Cryptex1）。build 444 / 449 无法保存可用的 Cryptex1 blob。-E 只请求用于抹掉安装的票据。";
-"SAVE_BASEBAND_NOTE" = "蜂窝网络机型：在 Mac 上安装 libimobiledevice（brew install libimobiledevice），然后在本设备通过 USB 连接并信任的状态下，将命令粘贴到“终端”中。它会用 ideviceinfo 读取 BbSNUM 并转换为十六进制。BbSNUM 不会改变，记下一次后即可不连接设备直接用 -c 指定。若不保存基带票据，请改用 -b。";
+"SAVE_BASEBAND_NOTE" = "蜂窝网络机型：在 Mac 上安装 libimobiledevice（brew install libimobiledevice），然后在本设备通过 USB 连接并信任的状态下，将命令粘贴到“终端”中。它会用 ideviceinfo 读取 BbSNUM。BbSNUM 不会改变，记下一次后即可不连接设备直接用 -c 指定。若不保存基带票据，请改用 -b。";
 "SAVE_LIMITS_NOTE" = "保存了 blob 且 generator 一致，并不代表一定能降级：恢复还需要与目标 iOS 兼容的 SEP 和基带。目前没有可用的 futurerestore，请保存好 blob，直到有可用的工具。";
 "COPY_ALL_VALUES" = "复制所有值";
 "STATUS_LIMITED" = "此 iOS 上功能有限：仅可显示 generator（来自设备树）和 SHSH 保存指南。";
